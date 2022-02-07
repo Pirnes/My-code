@@ -1,0 +1,45 @@
+﻿@inject HttpClient client
+<h2>Get random joke</h2>
+
+<button class="btn btn-primary" disabled="@isDisabled" @onclick="GetRandomJoke">@jokeButtonText</button>
+
+@if (j != null)
+{
+    <div id="display-joke">
+        <h3>Joke: @j.Id</h3>
+        <p>@System.Net.WebUtility.HtmlDecode(j.Joke)</p>
+        @if (j.Categories != null && j.Categories.Length > 0)
+        {
+            <h3>Joke Categories</h3>
+            <ul>
+                @foreach (string cat in j.Categories)
+                {
+                    <li>@cat</li>
+                }
+            </ul>
+        }
+    </div>
+}
+
+@code {
+
+    SingleJoke j;
+    bool isDisabled;
+    string jokeButtonText = "Get Random Joke";
+
+    private async Task GetRandomJoke()
+    {
+
+        isDisabled = true;
+        jokeButtonText = "Fetching Joke...";
+        j = null;
+
+        RandomResponse response =
+            await client.GetFromJsonAsync<Chuck_Norris_Jokes_Api.Shared.RandomResponse>("https://api.icndb.com/jokes/random");
+
+        isDisabled = false;
+        jokeButtonText = "Get Random Joke";
+
+        j = response.Value;
+    }
+}
