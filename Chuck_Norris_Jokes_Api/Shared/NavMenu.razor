@@ -1,5 +1,5 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Chuck_Norris_Jokes_Api</a>
+    <a class="navbar-brand" href="">CNJG</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,13 +15,33 @@
     </ul>
 </div>
 
+<div class="@NavMenuCssClass" @onclick="OtherJokes">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="nav-item" aria-hidden="true"></span> OtherJokes
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
 @code {
-    private bool collapseNavMenu = true;
+    @inject NavigationManager Navigaattori
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+        private bool collapseNavMenu = true;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
     }
-}
+
+@code {
+
+        private void OtherJokes()
+        {
+            Navigaattori.NavigateTo("OtherJokes");
+        }
+    }
