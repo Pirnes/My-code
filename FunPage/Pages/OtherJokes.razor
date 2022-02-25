@@ -1,0 +1,32 @@
+﻿@page "/OtherJokes"
+@inject HttpClient client
+@using FunPage.Shared;
+
+<center>
+    <h1>Other Jokes</h1>
+</center>
+<br />
+<center>
+    <button class="btn btn-primary" @onclick="GetRandomJoke">Get Dad Joke</button>
+</center>
+<br />
+
+@if (DadJoke != null)
+{
+
+    <h1>Joke:   @System.Net.WebUtility.HtmlDecode(DadJoke.Joke)</h1>
+
+
+}
+
+@code {
+    SingleDadJoke DadJoke;
+
+
+
+    private async Task GetRandomJoke()
+    {
+        RandomDadJoke response = await client.GetFromJsonAsync<FunPage.Shared.RandomDadJoke>("https://official-joke-api.appspot.com/random_joke");
+        DadJoke = response.Value;
+    }
+}
