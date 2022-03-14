@@ -1,5 +1,3 @@
-import { ALL } from "dns"
-
 const Header = (props) => {
   console.log(props)
   return (
@@ -14,9 +12,9 @@ const Content = (props) => {
   return (
     <div>
       <p>Kurssiin kuuluvat seuraavat osat:</p>
-      <Part kurssi={props.course.parts[1]} tehtavat={props.course.parts[2]}/>
-      <Part kurssi={props.course.parts[3]} tehtavat={props.course.parts[4]}/>
-      <Part kurssi={props.course.parts[5]} tehtavat={props.course.parts[6]}/>
+      <Part kurssi={props.parts[0].name} tehtavat={props.parts[0].exercises}/>
+      <Part kurssi={props.parts[1].name} tehtavat={props.parts[1].exercises}/>
+      <Part kurssi={props.parts[2].name} tehtavat={props.parts[2].exercises}/>
     </div>
   )
 }
@@ -34,7 +32,7 @@ const Total = (props) => {
   console.log(props)
   return (
     <div>
-      <p>Yhteensä tehtäviä on: {props.exercises + props.exercises2 + props.exercises3} kpl.</p>
+      <p>Yhteensä tehtäviä on: {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises} kpl.</p>
     </div>
   )
 }
