@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-const Button = (props) => {
-  return (
+const Button = (props) => (
     <button onClick={props.handleClick}>{props.text}</button>
   )
-}
 
 const Display = props => <div>{props.text}{props.value}</div>
 
