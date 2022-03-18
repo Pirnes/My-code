@@ -4,13 +4,35 @@ const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
   )
 
-const Display = props => <div>{props.text}{props.value}</div>
-
-const Statistics = props => (
-    <div>
-      <Display value={props.value} text={props.text}/>
+const Display = (props)=> {
+  return (
+  <div>
+    {props.text}{props.value}
     </div>
   )
+}
+
+const Statistics = (props) => {
+  if (props.value[0]==0) {
+    return (
+      <div>
+        No feedback given yet...
+      </div>
+    )
+  }
+  return (
+      <div>
+      <Display value={props.value[0]} text='good: '/>
+      <Display value={props.value[1]} text='neutral: '/>
+      <Display value={props.value[2]} text='bad: '/>
+      <p></p>
+      <Display value={props.value[3]} text='all: '/>
+      <Display value={props.value[4]} text='average: '/>
+      <Display value={props.value[5]} text='positive: '/>
+      </div>
+    )
+}
+
 
 const App = () => {
 
@@ -20,6 +42,7 @@ const App = () => {
   const all = good+neutral+bad
   const average = (good - bad)/all
   const positive = good/all*100+' %'
+  const buttonvalues = [good, neutral, bad, all, average, positive]
 
   return (
     <div>
@@ -30,13 +53,7 @@ const App = () => {
       <Button handleClick={() => setBad(bad + 1)} text='bad'/>
       <p></p>
       <h2>statistics:</h2>
-      <Statistics value={good} text='good: '/>
-      <Statistics value={neutral} text='neutral: '/>
-      <Statistics value={bad} text='bad: '/>
-      <p></p>
-      <Statistics value={all} text='all: '/>
-      <Statistics value={average} text='average: '/>
-      <Statistics value={positive} text='positive: '/>
+      <Statistics value={buttonvalues}/>
     </div>
   )
 }
