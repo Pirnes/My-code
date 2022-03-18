@@ -1,19 +1,11 @@
 import { useState } from "react";
 
-const Button = (props) => (
-  <button onClick={props.handleClick}>{props.text}</button>
-  )
+const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 
-const Display = (props)=> {
-  return (
-  <div>
-    {props.text}{props.value}
-    </div>
-  )
-}
+const Display = (props)=> <div>{props.text}{props.value}</div>
 
 const Statistics = (props) => {
-  if (props.value[0]==0) {
+  if (props.value[3]==0) {
     return (
       <div>
         No feedback given yet...
@@ -22,16 +14,36 @@ const Statistics = (props) => {
   }
   return (
       <div>
-      <Display value={props.value[0]} text='good: '/>
-      <Display value={props.value[1]} text='neutral: '/>
-      <Display value={props.value[2]} text='bad: '/>
-      <p></p>
-      <Display value={props.value[3]} text='all: '/>
-      <Display value={props.value[4]} text='average: '/>
-      <Display value={props.value[5]} text='positive: '/>
+      <StatisticsLine value={props.value}/>
       </div>
     )
 }
+
+const StatisticsLine = (props) => {
+    return (
+      <div>
+        <StatisticsGood value={props.value}/>
+        <StatisticsNeutral value={props.value}/>
+        <StatisticsBad value={props.value}/>
+        <p></p>
+        <StatisticsAll value={props.value}/>
+        <StatisticsAverage value={props.value}/>
+        <StatisticsPositive value={props.value}/>
+      </div>
+    )
+}
+
+const StatisticsGood = (props) => <div><Display value={props.value[0]} text='good: '/></div>
+
+const StatisticsNeutral = (props) => <div><Display value ={props.value[1]} text='neutral: '/></div>
+
+const StatisticsBad = (props) => <div><Display value ={props.value[2]} text='bad: '/></div>
+
+const StatisticsAll = (props) => <div><Display value ={props.value[3]} text='all: '/></div>
+
+const StatisticsAverage = (props) => <div><Display value ={props.value[4]} text='average: '/></div>
+
+const StatisticsPositive = (props) => <div><Display value ={props.value[5]} text='positive: '/></div>
 
 
 const App = () => {
