@@ -7,26 +7,26 @@
 </center>
 <br />
 <center>
-    <button class="btn btn-primary" @onclick="GetRandomJoke">Get Dad Joke</button>
+    <button class="btn btn-primary" @onclick="GetOtherJoke">Get random joke</button>
 </center>
 <br />
 
-@if (DadJoke != null)
+@if (OtherJoke != null)
 {
 
-    <h1>Joke:   @System.Net.WebUtility.HtmlDecode(DadJoke.Joke)</h1>
+    <h1>Joke:   @System.Net.WebUtility.HtmlDecode(OtherJoke.Joke)</h1>
 
 
 }
 
 @code {
-    SingleDadJoke DadJoke;
+    SingleOtherJoke OtherJoke;
 
 
 
-    private async Task GetRandomJoke()
+    private async Task GetOtherJoke()
     {
-        RandomDadJoke response = await client.GetFromJsonAsync<FunPage.Shared.RandomDadJoke>("https://official-joke-api.appspot.com/random_joke");
-        DadJoke = response.Value;
+        RandomOtherJoke response = await client.GetFromJsonAsync<FunPage.Shared.RandomOtherJoke>("https://v2.jokeapi.dev/joke/Any");
+        OtherJoke = response.Value;
     }
 }
