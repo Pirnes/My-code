@@ -1,19 +1,37 @@
+import { getValue } from '@testing-library/user-event/dist/utils'
 import { useState } from 'react'
 
 const Button = (props) =>  <button onClick={props.handleClick}>{props.text}</button>
 
 const Randomize = (props) => {
-  var randomLuku = Math.floor((Math.random()*props.value.length))
-  
+  const [points, setPoints] = useState(new Array(7).fill(0))
+
+  const UpdatePoints = (selected) => {
+    let copy = [...points]
+    copy[selected]++
+    setPoints(copy)
+  }
+  const [selected, setSelected] = useState(0)
+  var randomi
+
+  const max = Math.max(...points)
+  const indexandmax = points.indexOf(max)
+
   return (
     <div>
-      {props.value[randomLuku]}
+      {props.value[randomi = Math.floor((Math.random()*props.value.length)+1) -1]}<p></p>
+      has {points[randomi]} votes<p></p>
+      <Button handleClick={() => setSelected(selected +1)} text='Get random anecdote'/>
+      <Button handleClick={() => UpdatePoints(randomi)}text='Vote this anecdote'/><p></p>
+      <h4>Anecdote with most votes: </h4><p></p>
+      {props.value[indexandmax]}<h4> has {max} votes. </h4>
     </div>
   )
 }
 
 
 const App = () => {
+
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -23,23 +41,10 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.'
   ]
-   
-  const [selected, setSelected] = useState(0)
-  
-  if (selected==0) {
-    return(
-      <div>{anecdotes[selected]}<p></p>
-      <Button handleClick={() => setSelected(selected +1)} text='Get random anecdote!'/>
-      </div>
-    )
-  }
 
-  return (
-    <div>
-      <Randomize value={anecdotes}/><p></p>
-      <Button handleClick={() => setSelected(selected +1)} text='Get random anecdote!'/>
-    </div>
-  )
+    return (
+      <Randomize value={anecdotes}/>
+    )
 }
 
-export default App;
+export default App; 
