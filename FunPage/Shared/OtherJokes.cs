@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 
 namespace FunPage.Shared
 {
-    public class RandomDadJoke
+    public class RandomOtherJoke
     {
         public string Type { get; set; }
-        public SingleDadJoke Value { get; set; }
+        public SingleOtherJoke Value { get; set; }
     }
 
-    public class SingleDadJoke
+    public class SingleOtherJoke
     {
         public int Id { get; set; }
         public string Joke { get; set; }
         public string[] Categories { get; set; }
+        public string Setup { get; set; }
     }
 }
