@@ -27,7 +27,7 @@ const ShowLanguages = (props) => {
 
 const Weather = (props) => {
   const [weather, setWeather] = useState([]);
-  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY; console.log(API_KEY)
+  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
   const options = {
     method: 'GET',
@@ -48,7 +48,6 @@ const Weather = (props) => {
   if (weather.length === 0) {
   axios.request(options).then(function (response) {
     setWeather(response.data)
-    console.log(response.data, 'weather data: ', weather, 'weather length: ', weather.length)
   }).catch(function (error) {
     console.error(error);
   });
