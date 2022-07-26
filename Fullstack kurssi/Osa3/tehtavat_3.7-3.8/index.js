@@ -1,9 +1,11 @@
-const { response } = require('express')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
 
 app.use(express.json())
+app.use(cors())
+app.use(express('build'))
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status  - :res[content-length] - :response-time ms :body'));
 
@@ -31,8 +33,6 @@ let persons = [
     }
 ]
 
-console.log(persons)
-
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const person = persons.find(person => person.id === id)
@@ -43,6 +43,15 @@ app.get('/api/persons/:id', (request, response) => {
         response.status(404).end('person not found')
     }
 }) 
+
+app.get('/api/persons', (request, response) => {
+    if (persons) {
+        response.json(persons)
+    }
+    else {
+        response.status(404).end()
+    }
+  })
 
 app.get('/info', (request, response) => {
     const date = new Date

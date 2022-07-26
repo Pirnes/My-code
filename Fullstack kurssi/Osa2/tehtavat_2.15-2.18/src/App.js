@@ -3,6 +3,8 @@ import Person from './components/Person'
 import axios from 'axios'
 import personService from './services/persons'
 import React from 'react'
+import './index.css'
+import Notification from './components/Notification'
 
 //Shows founded filtered names and numbers
 const ShowFiltered = (props) => <strong>{props.value.name} {props.value.number}</strong>
@@ -29,8 +31,8 @@ const Filter = (props) => {
   };
 
   return (
-    <div>
-      Filter shown with: <input
+    <div className='filter'>
+      Search person: <input
         type='search'
         value={name}
         onChange={filter}
@@ -55,6 +57,15 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [newPersonName, setNewPersonName] = useState('')
   const [newPersonNumber, setNewPersonNumber] = useState ('')
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  useEffect(() => {
+    personService
+      .getAll()
+      .then(response => {
+        setPersons(response)
+      })
+  }, [])
 
   const removePersonOf = (person) => {
     if (window.confirm('Do you really want to remove this person from phonebook?')) {
@@ -69,7 +80,6 @@ const App = () => {
   //This adds new person with name and number to phonebook
   const addPerson = (event) => {
     const isExists = persons.find(p => p.name.toLowerCase() === newPersonName.toLocaleLowerCase())
-
     event.preventDefault()
     const personObject = {
       name: newPersonName,
@@ -93,6 +103,17 @@ const App = () => {
     setPersons(persons.concat(returnedPerson))
     setNewPersonName('')
     setNewPersonNumber('')
+    })
+    .catch(error => {
+      const cleared = error.response.data.slice(0, error.response.data.indexOf('<br>'))
+      const moreCleared = cleared.split('<pre>')
+      moreCleared.shift()
+      setErrorMessage(moreCleared)
+      console.log(error)
+      console.log(error.response.data)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     })}
   }
 
@@ -106,10 +127,7 @@ const App = () => {
   
   const hook = () => {
     axios
-    .get('http://localhost:3001/persons')
-    .then(response => {
-      setPersons(response.data)
-    })
+    .get('/api/persons')
   }
 
   useEffect(hook, [])
@@ -117,20 +135,21 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage}/>
       <Filter value={persons}/><p></p>
       <form onSubmit={addPerson}>
-        <div>
+        <div className='input'>
           name: <input 
           value={newPersonName}
           onChange={handlePersonNameChange}/>
         </div>
-        <div>
+        <div className='input'>
           number: <input
           value={newPersonNumber}
           onChange={handlePersonNumberChange}/>
         </div>
         <div>
-          <button type="submit">add name and number to phonebook</button>
+          <button className='button' type="submit">add name and number to phonebook</button>
         </div>
       </form>
       <h2>Numbers</h2>

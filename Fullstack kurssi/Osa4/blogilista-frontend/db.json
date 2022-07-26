@@ -1,0 +1,10 @@
+{
+    "blogs": [
+        {
+            "title": "Kukkia Hattuun",
+            "author": "Kukka Hattu",
+            "url": "Testi URL",
+            "likes": 666
+        }
+    ]
+}

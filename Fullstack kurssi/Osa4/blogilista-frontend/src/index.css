@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h2 {
+  text-align: center;
+  color: black;
+  padding-left: 10px;
+}
+
+.blog {
+  color: blueviolet;
+  padding-top: 5px;
+  font-size: 15px;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: black;
+  display: inline-block;
+  padding-top: 10px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.author {
+  color: black;
+  padding-top: 5px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.url {
+  color: black;
+  padding-top: 5px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.input {
+  left: 500;
+}
+
+.blogtitle {
+  margin: 5px;
+}
+
+.blogauthor {
+  margin: 5px;
+}
+
+.blogurl {
+  margin: 5px;
+}
+
+.bloglikes {
+  margin: 5px
+}
+
+.head {
+  background-color: black;
+}
