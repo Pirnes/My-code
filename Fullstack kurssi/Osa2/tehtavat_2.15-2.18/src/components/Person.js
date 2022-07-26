@@ -1,13 +1,12 @@
 import React from "react"
-import axios from "axios"
 
 const Person = ({ person, removePerson }) => {
 
 
       return (
-        <li>
+        <li className="persons">
             {person.name} {person.number}
-            <button onClick={()=>removePerson(person.id)}>Delete</button>
+            <button className="deletebutton" onClick={()=>removePerson(person.id)}>Delete</button>
         </li>
       )
     }

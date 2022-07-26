@@ -11,3 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.persons {
+  color: blueviolet;
+  padding-top: 5px;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h1, h2, h3 {
+  color: darkblue;
+  padding-left: 15px;
+}
+
+.filter {
+  color: darkblue;
+  padding: 15px;
+}
+
+.input {
+  color: forestgreen;
+  padding-left: 15px;
+}
+
+.button {
+  color: black;
+  background-color: greenyellow;
+  margin-left: 15px;
+}
+
+.deletebutton {
+  color: white;
+  background-color: palevioletred;
+  margin-left: 10px;
+}
