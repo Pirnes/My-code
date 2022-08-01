@@ -1,4 +1,4 @@
-const mostLiked = (testblogs) => {
+const favoriteBlog = (testBlogs) => {
 
     const blogs = [
         {
@@ -56,10 +56,16 @@ const mostLiked = (testblogs) => {
       })
 
       const maxLikes = Math.max(...likes)
-
-      return maxLikes
+      const favBlog = blogs.find(b => b.likes === maxLikes)
+      const newBlog = {
+        title: favBlog.title,
+        author: favBlog.author,
+        likes: favBlog.likes
+      }
+      // console.log(newBlog)
+      return newBlog
 }
 
 module.exports = {
-    mostLiked
+    favoriteBlog
 }

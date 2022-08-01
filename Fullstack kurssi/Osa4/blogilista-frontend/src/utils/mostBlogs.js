@@ -1,4 +1,7 @@
-const mostLiked = (testblogs) => {
+const { indexOf } = require('lodash')
+var _ = require('lodash')
+
+const mostBlogs = (testblogs) => {
 
     const blogs = [
         {
@@ -51,15 +54,34 @@ const mostLiked = (testblogs) => {
         }  
       ]
 
-      const likes = blogs.map(object => {
-        return object.likes
+      
+      const authors = blogs.map(object => {
+        return object.author
       })
 
-      const maxLikes = Math.max(...likes)
+      const authorList = authors.filter(function(item, pos) {
+        return authors.indexOf(item) === pos
+      })
 
-      return maxLikes
+      const authorArray = [{author: authorList[0], blogs: 0}, {author: authorList[1], blogs: 0}, {author: authorList[2], blogs: 0}]
+
+      blogs.forEach(element => {
+        for (var i=0; i < authorList.length; i++) {
+        if (element.author === authorList[i]) {
+          authorArray[i].blogs +=1
+        }}
+      })
+
+      const authorMostBlogs = authorArray.reduce((accumulator, currentValue, index) => {
+        if (index === 0) {
+          return currentValue;
+        }
+        return accumulator.blogs > currentValue.blogs ? accumulator : currentValue;
+      });
+
+      return authorMostBlogs
 }
 
 module.exports = {
-    mostLiked
-}
+    mostBlogs
+} 

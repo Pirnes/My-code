@@ -1,4 +1,4 @@
-const mostLiked = (testblogs) => {
+const mostLikes = (testblogs) => {
 
     const blogs = [
         {
@@ -51,15 +51,35 @@ const mostLiked = (testblogs) => {
         }  
       ]
 
-      const likes = blogs.map(object => {
-        return object.likes
+      const authors = blogs.map(object => {
+        return object.author
       })
 
-      const maxLikes = Math.max(...likes)
+      const authorList = authors.filter(function(item, pos) {
+        return authors.indexOf(item) === pos
+      })
 
-      return maxLikes
-}
+      const authorArray = [{author: authorList[0], likes: 0}, {author: authorList[1], likes: 0}, {author: authorList[2], likes: 0}]
 
-module.exports = {
-    mostLiked
-}
+      blogs.forEach(element => {
+        for (var i=0; i < blogs.length; i++) {
+        if (element.author === authorList[i]) {
+          authorArray[i].likes += element.likes
+        }}
+      })
+
+      const authorMostLikes = authorArray.reduce((accumulator, currentValue, index) => {
+        if (index === 0) {
+          return currentValue;
+        }
+        return accumulator.likes > currentValue.likes ? accumulator : currentValue;
+      });
+
+      console.log(authorMostLikes)
+      
+    return authorMostLikes
+    }
+
+    module.exports = {
+        mostLikes
+    }
