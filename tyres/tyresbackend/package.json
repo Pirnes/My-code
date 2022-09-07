@@ -1,0 +1,28 @@
+{
+  "name": "tyresbackend",
+  "version": "1.0.0",
+  "description": "backend for tyreshop website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Pirnes/tyres.git"
+  },
+  "keywords": [
+    "tyres"
+  ],
+  "author": "Lasse Pirnes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pirnes/tyres/issues"
+  },
+  "homepage": "https://github.com/Pirnes/tyres#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.4"
+  }
+}
