@@ -56,7 +56,7 @@ const mostLiked = (testblogs) => {
       })
 
       const maxLikes = Math.max(...likes)
-      console.log(maxLikes)
+
       return maxLikes
 }
 
